@@ -24,11 +24,26 @@ struct App {
     
     /// App name
     static var name:String {
-        return  App.baseInfo!["CFBundleName"] as! String
+        return  App.baseInfo!["CFBundleDisplayName"] as! String
     }
     
     /// App product name
     static var productName:String {
-        return App.baseInfo!["CFBundleExecutable"] as! String
+        return App.baseInfo!["CFBundleName"] as! String
+    }
+
+    /// App version
+    static var version:String {
+        return App.baseInfo!["CFBundleShortVersionString"] as! String
+    }
+
+    /// App build version
+    static var buildVersion:String {
+        return App.baseInfo!["CFBundleVersion"] as! String
+    }
+
+    /// The App package identifier
+    static var bundleIdentifier:String {
+        return App.baseInfo!["CFBundleIdentifier"] as! String
     }
 }

@@ -12,9 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AppViewController" customModule="IDKit" customModuleProvider="target">
             <connections>
+                <outlet property="buildVersionLable" destination="Bcb-fq-nRX" id="blZ-Wg-exa"/>
                 <outlet property="heightLable" destination="lGl-l0-Zgf" id="eoY-hM-fCT"/>
+                <outlet property="identifierLable" destination="P5o-oe-hgp" id="KK8-Fx-QFb"/>
                 <outlet property="nameLable" destination="Uhc-nt-uzd" id="2gC-ZI-2SO"/>
                 <outlet property="productNameLable" destination="OPm-fM-1Dv" id="S1X-tR-K0i"/>
+                <outlet property="versionLable" destination="TdA-lm-i0g" id="SuU-Vf-1gx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="widthLable" destination="g9b-Bl-5gb" id="q0U-h9-Z7f"/>
             </connections>
@@ -227,7 +230,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rtB-lL-VBc" secondAttribute="trailing" id="sJQ-gJ-RDi"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="380" y="1152"/>
+            <point key="canvasLocation" x="537" y="1141"/>
         </view>
     </objects>
 </document>

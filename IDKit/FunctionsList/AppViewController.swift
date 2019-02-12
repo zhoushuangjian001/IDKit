@@ -17,12 +17,16 @@ class AppViewController: UIViewController {
     @IBOutlet weak var nameLable: UILabel!
     @IBOutlet weak var productNameLable: UILabel!
     
-    
-    
+    @IBOutlet weak var versionLable: UILabel!
+    @IBOutlet weak var buildVersionLable: UILabel!
+
+
+    @IBOutlet weak var identifierLable: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setAppScreenWidthOrHeight()
         self.setNamesOfApp()
+        self.setVersionOfApp()
     }
 
 
@@ -51,5 +55,11 @@ extension AppViewController {
     func setNamesOfApp(){
         nameLable.text = "名字:  " + "\(App.name)"
         productNameLable.text = "工程名:  " + "\(App.productName)"
+    }
+
+    // 版本
+    func setVersionOfApp(){
+        versionLable.text = "版本:  " + "\(App.version)"
+        buildVersionLable.text = "内部版本:  " + "\(App.buildVersion)"
     }
 }
