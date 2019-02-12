@@ -1,0 +1,17 @@
+[
+    {
+        "title":"App 软件信息",
+        "list":[
+            "App 宽与高",
+            "App 名字(Display Name)",
+            "App 工程名字(Product Name)",
+            "App 版本(Version)",
+            "App 构建版本(Build)",
+            "App 包标识符(Bundle Identifier)",
+            "App 最低支持操作系统(Deployment Target)"
+        ]
+    }
+    
+]
+
+
