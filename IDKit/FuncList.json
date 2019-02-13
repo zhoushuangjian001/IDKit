@@ -8,7 +8,23 @@
             "App 版本(Version)",
             "App 构建版本(Build)",
             "App 包标识符(Bundle Identifier)",
-            "App 最低支持操作系统(Deployment Target)"
+            "App 最低支持操作系统(Deployment Target)",
+            "App 运行平台的名称(Platform Name)",
+            "App 运行平台的系统版本(Platform Version)"
+        ]
+    },
+    {
+        "title":"数值转换",
+        "list":[
+            "Int 转 Float 类型",
+            "Int 转 Double 类型",
+            "Int 转 String 类型",
+            "Float 转 Int 类型",
+            "Float 转 Double 类型",
+            "Float 转 String 类型",
+            "Double 转 Float 类型",
+            "Double 转 Int 类型",
+            "Double 转 String 类型"
         ]
     }
     

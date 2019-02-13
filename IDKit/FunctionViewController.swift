@@ -20,8 +20,8 @@ class FunctionViewController: UIViewController {
         super.viewDidLoad()
         self.registerComponentOfCollectionView()
         self.getListData()
-        print(App.baseInfo!)
 
+        
         
     }
     
@@ -60,6 +60,7 @@ extension FunctionViewController:UICollectionViewDelegate,UICollectionViewDataSo
     // Cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "com.network.idkit", for: indexPath) as! CollectionViewCell
+        funcListDataContainers = funcDataContainers[indexPath.section]["list"] as! Array<String>
         let title = funcListDataContainers[indexPath.row]
         cell.titleLable.text = title
         
@@ -77,6 +78,7 @@ extension FunctionViewController:UICollectionViewDelegate,UICollectionViewDataSo
         switch index {
         case 0:
             let vc = AppViewController()
+            vc.title = funcDataContainers[index]["title"] as? String
             self.navigationController?.pushViewController(vc, animated: true)
         default:
             return

@@ -22,11 +22,19 @@ class AppViewController: UIViewController {
 
 
     @IBOutlet weak var identifierLable: UILabel!
+
+    @IBOutlet weak var minimumOSVersionLable: UILabel!
+
+    @IBOutlet weak var platformNameLable: UILabel!
+    @IBOutlet weak var platformVersionLable: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setAppScreenWidthOrHeight()
         self.setNamesOfApp()
         self.setVersionOfApp()
+        self.setPackageIdentifier()
+        self.setPlatformInfo()
     }
 
 
@@ -61,5 +69,17 @@ extension AppViewController {
     func setVersionOfApp(){
         versionLable.text = "版本:  " + "\(App.version)"
         buildVersionLable.text = "内部版本:  " + "\(App.buildVersion)"
+    }
+
+    // 包标识符
+    func setPackageIdentifier(){
+        identifierLable.text = "包标识符:  " + "\(App.bundleIdentifier)"
+    }
+
+    // 支持运行的最小系统版本、运行平台名字、运行平台的系统版本
+    func setPlatformInfo(){
+        minimumOSVersionLable.text = "支持最小运行系统版本:  " + "\(App.minimunOSVersion)"
+        platformNameLable.text =   "运行平台名字: " + "\(App.operationPlatform)"
+        platformVersionLable.text = "运行平台的系统版本: " + "\(App.operationPlatformVersion)"
     }
 }

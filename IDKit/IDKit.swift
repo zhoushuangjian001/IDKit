@@ -46,4 +46,52 @@ struct App {
     static var bundleIdentifier:String {
         return App.baseInfo!["CFBundleIdentifier"] as! String
     }
+
+    /// The App operation platform
+    static var operationPlatform:String {
+        return App.baseInfo!["DTPlatformName"] as! String
+    }
+
+    /// The App operation platform version
+    static var operationPlatformVersion:String {
+        return App.baseInfo!["DTPlatformVersion"] as! String
+    }
+
+    /// App system version of the minimum support
+    static var minimunOSVersion:String {
+        return App.baseInfo!["MinimumOSVersion"] as! String
+    }
 }
+
+// MARK: Numerical transformation
+extension SignedNumeric {
+
+    /// Numerical turn String
+    var toString:String {
+        return "\(self)"
+    }
+
+    /// Numerical turn Int
+    var toInt:Int {
+        var numericalStr = "\(self)"
+        if "\(type(of: self))" != "Int"  {
+            if numericalStr.contains(".") {
+                numericalStr = numericalStr.components(separatedBy: ".").first!
+            }
+        }
+        return Int(numericalStr) ?? 0
+    }
+
+    /// Numerical turn Float
+    var toFloat:Float {
+        return Float("\(self)") ?? 0.0
+    }
+
+    /// Numerical turn Double
+    var toDouble:Double {
+        return Double("\(self)") ?? 0.0
+    }
+}
+
+
+
