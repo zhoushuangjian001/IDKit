@@ -94,4 +94,182 @@ extension SignedNumeric {
 }
 
 
+// MARK: The view extension(UIView)
+extension UIView {
 
+    // MARK: View location size extension
+    // Origin x
+    var origin_x:CGFloat {
+        get{
+            return self.frame.origin.x
+        }
+        set{
+            var origin = self.frame.origin
+            origin.x = newValue
+            self.frame.origin = origin
+        }
+    }
+
+    // Origin y
+    var origin_y:CGFloat {
+        get{
+            return self.frame.origin.y
+        }
+        set{
+            var origin = self.frame.origin
+            origin.y = newValue
+            self.frame.origin = origin
+        }
+    }
+
+    // Size width
+    var size_width:CGFloat {
+        get{
+            return self.bounds.width
+        }
+        set{
+            var size = self.bounds.size
+            size.width = newValue
+            self.bounds.size = size
+        }
+    }
+
+    // Size height
+    var size_height:CGFloat {
+        get{
+            return self.bounds.height
+        }
+        set{
+            var size = self.bounds.size
+            size.height = newValue
+            self.bounds.size = size
+        }
+    }
+
+
+    // Center x
+    var center_x:CGFloat {
+        get{
+            return self.center.x
+        }
+        set{
+            var center = self.center
+            center.x = newValue
+            self.center = center
+        }
+    }
+
+    // Center y
+    var center_y:CGFloat {
+        get{
+            return self.center.y
+        }
+        set{
+            var center = self.center
+            center.y = newValue
+            self.center = center
+        }
+    }
+
+    // Origin
+    var origin:CGPoint {
+        get{
+            return self.frame.origin
+        }
+        set{
+            var origin = self.frame.origin
+            origin = newValue
+            self.frame.origin = origin
+        }
+    }
+
+    // Size
+    var size:CGSize {
+        get{
+            return self.bounds.size
+        }
+        set{
+            var frame = self.frame
+            frame.size = newValue
+            self.frame = frame
+        }
+    }
+
+
+    // The four corners vertices of a rectangle
+    // Left top vertices
+    var ltPoint:CGPoint {
+        return self.frame.origin
+    }
+
+    // Left botton vertices
+    var lbPoint:CGPoint {
+        return CGPoint.init(x: self.origin_x, y: self.frame.maxY)
+    }
+
+    // Right top vertices
+    var rtPoint:CGPoint {
+        return CGPoint.init(x: self.frame.maxX, y: self.origin_y)
+    }
+
+    // Right botton vertices
+    var rbPoint:CGPoint {
+        return CGPoint.init(x: self.frame.maxX, y: self.frame.maxY)
+    }
+
+
+    // Translation, scaling, rotation, adaptation
+    // The view of translation
+    func translationBy(offset:CGPoint){
+        var center = self.center
+        center.x += offset.x
+        center.y += offset.y
+        self.center = center
+    }
+
+    // The view of Zoom
+    func zoomBy(scale:CGFloat){
+        var frame = self.frame
+        frame.size.width *= scale
+        frame.size.height *= scale
+        self.frame = frame
+    }
+
+    // The view of rotation
+    func rotatingBy(angle:CGFloat){
+        let transform = CGAffineTransform.init(rotationAngle: angle)
+        self.transform = transform
+    }
+
+    // The view Adaptive size specification
+    func sizeFitBy(size:CGSize) {
+        var frame = self.frame
+        let aspectRatio = frame.width / frame.height
+        if size.width > size.height {
+            frame.size.height = size.height
+            frame.size.width = size.height * aspectRatio
+        }
+        if size.width < size.height {
+            frame.size.width = size.width
+            frame.size.height = size.width / aspectRatio
+        }
+        if size.width == size.height {
+            frame.size.height = size.height
+            frame.size.width = size.height * aspectRatio
+        }
+        self.frame = frame
+    }
+}
+
+
+// MARK: The expansion of the string (String)
+extension String {
+
+    // The length of characters in a string
+    var length:Int {
+        return self.count
+    }
+
+    
+
+}
