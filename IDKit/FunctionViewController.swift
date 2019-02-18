@@ -80,6 +80,10 @@ extension FunctionViewController:UICollectionViewDelegate,UICollectionViewDataSo
             let vc = AppViewController()
             vc.title = funcDataContainers[index]["title"] as? String
             self.navigationController?.pushViewController(vc, animated: true)
+        case 1:
+            let vc = NumberViewController()
+            vc.title = funcDataContainers[index]["title"] as? String
+            self.navigationController?.pushViewController(vc, animated: true)
         default:
             return
         }

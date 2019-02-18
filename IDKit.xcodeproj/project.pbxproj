@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16EBCF09221AE95C00734593 /* NumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EBCF07221AE95C00734593 /* NumberViewController.swift */; };
+		16EBCF0A221AE95C00734593 /* NumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16EBCF08221AE95C00734593 /* NumberViewController.xib */; };
 		7D41FD8F2212604A003E15A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D41FD8E2212604A003E15A6 /* AppDelegate.swift */; };
 		7D41FD912212604A003E15A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D41FD902212604A003E15A6 /* ViewController.swift */; };
 		7D41FD942212604A003E15A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D41FD922212604A003E15A6 /* Main.storyboard */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16EBCF07221AE95C00734593 /* NumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberViewController.swift; sourceTree = "<group>"; };
+		16EBCF08221AE95C00734593 /* NumberViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberViewController.xib; sourceTree = "<group>"; };
 		7D41FD8B2212604A003E15A6 /* IDKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D41FD8E2212604A003E15A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D41FD902212604A003E15A6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +96,8 @@
 			children = (
 				7D41FDAB22128E34003E15A6 /* AppViewController.swift */,
 				7D41FDAC22128E34003E15A6 /* AppViewController.xib */,
+				16EBCF07221AE95C00734593 /* NumberViewController.swift */,
+				16EBCF08221AE95C00734593 /* NumberViewController.xib */,
 			);
 			path = FunctionsList;
 			sourceTree = "<group>";
@@ -155,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D41FDA522126657003E15A6 /* FuncList.json in Resources */,
+				16EBCF0A221AE95C00734593 /* NumberViewController.xib in Resources */,
 				7D41FDA3221260B4003E15A6 /* FunctionViewController.xib in Resources */,
 				7D41FDAE22128E34003E15A6 /* AppViewController.xib in Resources */,
 				7D41FDA9221288BD003E15A6 /* CollectionViewCell.xib in Resources */,
@@ -177,6 +184,7 @@
 				7D41FDB022129681003E15A6 /* IDKit.swift in Sources */,
 				7D41FDA8221288BD003E15A6 /* CollectionViewCell.swift in Sources */,
 				7D41FD8F2212604A003E15A6 /* AppDelegate.swift in Sources */,
+				16EBCF09221AE95C00734593 /* NumberViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
