@@ -21,7 +21,8 @@ class FunctionViewController: UIViewController {
         self.registerComponentOfCollectionView()
         self.getListData()
 
-        
+        let s = "120.23.26".toFloat
+        print(s)
         
     }
     

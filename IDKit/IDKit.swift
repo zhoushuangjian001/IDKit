@@ -270,6 +270,42 @@ extension String {
         return self.count
     }
 
+    // Turn the string value
+    // String to Int
+    var toInt:Int {
+        // The old way
+        var array = [String]()
+        for i in 0...9 {
+            array.append("\(i)")
+        }
+        array.append(".")
+        //
+        var pointCount:Int = 0
+        var isNumber = true
+        // Traversal string
+        for i in self {
+            let temp = "\(i)"
+            if array.contains(temp) {
+                if temp == "." {
+                    pointCount += 1
+                }
+            }else{
+                isNumber = false
+                break
+            }
+        }
+        if pointCount > 1 || isNumber == false {
+            return 0
+        }else{
+            return Int(self)!
+        }
+    }
+
+    // String to Float
+    var toFloat:Float {
+        // r取点 ，去空
+        return Float(self)!
+    }
     
 
 }
