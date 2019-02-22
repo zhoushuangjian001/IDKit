@@ -21,7 +21,13 @@ class FunctionViewController: UIViewController {
         self.registerComponentOfCollectionView()
         self.getListData()
 
-        
+        print(Device.uuid)
+        print(Device.name)
+        print(Device.nickName)
+        print(Device.systemName)
+        print(Device.systemVersion)
+        print(Device.batterLevel)
+        print(Device.modle)
         
     }
     

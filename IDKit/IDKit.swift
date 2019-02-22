@@ -61,6 +61,16 @@ struct App {
     static var minimunOSVersion:String {
         return App.baseInfo!["MinimumOSVersion"] as! String
     }
+    
+    /// Navigation Offset Height(This is not the actual height of navigation, the actual height of 44.)
+    static var navigationHeight:CGFloat {
+        return UIScreen.main.bounds.height > 800 ? 88:64
+    }
+    
+    /// TabBar Height
+    static var tabBarHeight:CGFloat {
+        return UIScreen.main.bounds.height > 800 ? 83:49
+    }
 }
 
 // MARK: Numerical transformation
@@ -97,8 +107,8 @@ extension SignedNumeric {
 // MARK: The view extension(UIView)
 extension UIView {
 
-    // MARK: View location size extension
-    // Origin x
+    /// MARK: View location size extension
+    /// Origin x
     var origin_x:CGFloat {
         get{
             return self.frame.origin.x
@@ -110,7 +120,7 @@ extension UIView {
         }
     }
 
-    // Origin y
+    /// Origin y
     var origin_y:CGFloat {
         get{
             return self.frame.origin.y
@@ -122,7 +132,7 @@ extension UIView {
         }
     }
 
-    // Size width
+    /// Size width
     var size_width:CGFloat {
         get{
             return self.bounds.width
@@ -134,7 +144,7 @@ extension UIView {
         }
     }
 
-    // Size height
+    /// Size height
     var size_height:CGFloat {
         get{
             return self.bounds.height
@@ -147,7 +157,7 @@ extension UIView {
     }
 
 
-    // Center x
+    /// Center x
     var center_x:CGFloat {
         get{
             return self.center.x
@@ -159,7 +169,7 @@ extension UIView {
         }
     }
 
-    // Center y
+    /// Center y
     var center_y:CGFloat {
         get{
             return self.center.y
@@ -171,7 +181,7 @@ extension UIView {
         }
     }
 
-    // Origin
+    /// Origin
     var origin:CGPoint {
         get{
             return self.frame.origin
@@ -183,7 +193,7 @@ extension UIView {
         }
     }
 
-    // Size
+    /// Size
     var size:CGSize {
         get{
             return self.bounds.size
@@ -196,30 +206,30 @@ extension UIView {
     }
 
 
-    // The four corners vertices of a rectangle
-    // Left top vertices
+    /// The four corners vertices of a rectangle
+    /// Left top vertices
     var ltPoint:CGPoint {
         return self.frame.origin
     }
 
-    // Left botton vertices
+    /// Left botton vertices
     var lbPoint:CGPoint {
         return CGPoint.init(x: self.origin_x, y: self.frame.maxY)
     }
 
-    // Right top vertices
+    /// Right top vertices
     var rtPoint:CGPoint {
         return CGPoint.init(x: self.frame.maxX, y: self.origin_y)
     }
 
-    // Right botton vertices
+    /// Right botton vertices
     var rbPoint:CGPoint {
         return CGPoint.init(x: self.frame.maxX, y: self.frame.maxY)
     }
 
 
-    // Translation, scaling, rotation, adaptation
-    // The view of translation
+    /// Translation, scaling, rotation, adaptation
+    /// The view of translation
     func translationBy(offset:CGPoint){
         var center = self.center
         center.x += offset.x
@@ -227,7 +237,7 @@ extension UIView {
         self.center = center
     }
 
-    // The view of Zoom
+    /// The view of Zoom
     func zoomBy(scale:CGFloat){
         var frame = self.frame
         frame.size.width *= scale
@@ -235,13 +245,13 @@ extension UIView {
         self.frame = frame
     }
 
-    // The view of rotation
+    /// The view of rotation
     func rotatingBy(angle:CGFloat){
         let transform = CGAffineTransform.init(rotationAngle: angle)
         self.transform = transform
     }
 
-    // The view Adaptive size specification
+    /// The view Adaptive size specification
     func sizeFitBy(size:CGSize) {
         var frame = self.frame
         let aspectRatio = frame.width / frame.height
@@ -265,14 +275,74 @@ extension UIView {
 // MARK: The expansion of the string (String)
 extension String {
 
-    // The length of characters in a string
+    /// The length of characters in a string
     var length:Int {
         return self.count
     }
 
     
-    var s:String {
-        return ""
-    }
+    
 
 }
+
+// MARK: Mobile Device Extension
+struct Device {
+    
+    /// Device object
+    fileprivate static var device = UIDevice.current
+    
+    /// Name of device
+    static var name:String {
+        var suffix:String = "simulator"
+        let size = UIScreen.main.bounds.size
+        if size.equalTo(CGSize.init(width: 320, height: 568)) {
+            suffix = "5s/SE"
+        }
+        if size.equalTo(CGSize.init(width: 375, height: 667)) {
+            suffix = "6/6s/7/8"
+        }
+        if size.equalTo(CGSize.init(width: 414, height: 763)) {
+            suffix = "6 Plus/6s Plus/7 Plus/8 Plus"
+        }
+        if size.equalTo(CGSize.init(width: 375, height: 812)) {
+            suffix = "X/XS"
+        }
+        if size.equalTo(CGSize.init(width: 414, height: 896)) {
+            suffix = "XR/XS Max"
+        }
+        return "iphone - " + suffix
+    }
+    
+    /// A UUID that may be used to uniquely identify the device, same across apps from a single vendor
+    static var uuid:String {
+        return device.identifierForVendor!.uuidString
+    }
+    
+    /// Device nick name
+    static var nickName:String {
+        return device.name
+    }
+    
+    /// Device system name
+    static var systemName:String {
+        return device.systemName
+    }
+    
+    /// Device system version
+    static var systemVersion:String {
+        return device.systemVersion
+    }
+    
+    /// Get battery power
+    static var batterLevel:Float {
+        return device.batteryLevel
+    }
+    
+    /// Device model (iphone、iPad)
+    static var model:String {
+        return device.model
+    }
+    
+}
+
+
