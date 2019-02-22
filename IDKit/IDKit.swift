@@ -271,5 +271,8 @@ extension String {
     }
 
     
+    var s:String {
+        return ""
+    }
 
 }
