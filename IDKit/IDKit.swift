@@ -279,6 +279,120 @@ extension String {
     var length:Int {
         return self.count
     }
+
+    /// Type conversion
+    /// String to Int
+    var toInt:Int {
+        var result:Int = 0
+        var tempSelf = self
+        var carryValue:Int = 0
+        let isPoint = self.hasPrefix(".") || self.hasSuffix(".")
+        if !isPoint {
+            var anyArray = [String]()
+            var numberArray = [String]()
+            for i in  0...9 {
+                numberArray.append("\(i)")
+            }
+            anyArray = numberArray
+            anyArray.append(".")
+            if self.contains(".") {
+                tempSelf = self.components(separatedBy: ".").first!
+                let firstCharts = self.components(separatedBy: ".").last!.first!
+                if numberArray.contains("\(firstCharts)") {
+                    if Int("\(firstCharts)")! > 4 {
+                        carryValue = 1
+                    }
+                }
+            }
+            for item in tempSelf {
+                let temp = "\(item)"
+                if anyArray.contains(temp){
+                    result = Int(tempSelf)!
+                }
+            }
+        }
+        return result + carryValue
+    }
+
+    /// String to float
+    var toFloat:Float {
+        return Float(self)!
+    }
+
+    /// String to double
+    var toDouble:Double {
+        return Double(self)!
+    }
+
+    /// Color hexadecimal conversion
+    var toColor:UIColor {
+        return self.getColor(value: self)
+    }
+
+    /// P3 color value
+    var toP3Color:UIColor {
+        return self.getColor(value: self,type: false)
+    }
+
+    /// For color object function
+    ///
+    /// - Parameters:
+    ///   - value: Color value
+    ///   - type: Standard 、P3
+    /// - Returns: Color object
+    fileprivate func getColor(value:String,type:Bool = true)-> UIColor {
+        var tempself = value.replacingOccurrences(of: " ", with: "")
+        if self.hasPrefix("#") {
+            let index = self.index(startIndex, offsetBy: 1)
+            tempself = String(self[index ..< endIndex])
+        }
+        if tempself.count == 6 {
+            var anyArray = [String]()
+            for i in 0 ... 9 {
+                anyArray.append("\(i)")
+            }
+            anyArray.append(contentsOf: ["A", "B", "C", "D", "E", "F", "a", "b", "c", "d", "e", "f"])
+            for item in tempself {
+                let temp = "\(item)"
+                if !anyArray.contains(temp) {
+                    return UIColor.clear
+                }
+            }
+            var numAcceptContainer = [UInt32](repeating: 0, count: 3)
+            for i in 0 ..< 3 {
+                let sIndex = tempself.index(tempself.startIndex, offsetBy: 2)
+                let tempStr = String(tempself[tempself.startIndex ..< sIndex])
+                tempself = String(tempself[sIndex ..< tempself.endIndex])
+                Scanner.init(string: tempStr).scanHexInt32(&numAcceptContainer[i])
+            }
+            if !type {
+                if #available(iOS 10.0, *) {
+                    return  UIColor.init(displayP3Red: CGFloat(numAcceptContainer[0])/255.0, green: CGFloat(numAcceptContainer[1])/255.0, blue: CGFloat(numAcceptContainer[2])/255.0, alpha: 1.0)
+                }
+            }
+            return UIColor.init(red: CGFloat(numAcceptContainer[0])/255.0, green: CGFloat(numAcceptContainer[1])/255.0, blue: CGFloat(numAcceptContainer[2])/255.0, alpha: 1.0)
+        }
+        return UIColor.clear
+    }
+
+    /// The slice of the string
+    func sliceRange(_ start: Int = 0, _ length: Int = 0)-> String {
+        let tempself = self.replacingOccurrences(of: " ", with: "")
+        guard tempself.count != 0 else { return self}
+        let sLength = tempself.count
+        var index = start
+        var endIndex = length
+        if index < 0 || index >= sLength {
+            index = 0
+        }
+        if sLength - index <= endIndex || endIndex == 0 {
+            endIndex = sLength - index
+        }
+        let s_index = tempself.index(startIndex, offsetBy: index)
+        let e_index = tempself.index(startIndex, offsetBy: index + endIndex)
+        return String(tempself[s_index ..< e_index])
+    }
+
 }
 
 // MARK: Mobile Device Extension
@@ -341,4 +455,6 @@ struct Device {
     
 }
 
+
+// MARK: - The expansion of the tuple
 

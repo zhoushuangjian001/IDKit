@@ -22,6 +22,10 @@ class FunctionViewController: UIViewController {
         self.getListData()
 
 
+        let s = "#AA66CC".sliceRange( -3,  6)
+        print(s)
+      
+
     }
     
     // TODO: Registered Component Of CollectionView
@@ -89,4 +93,7 @@ extension FunctionViewController:UICollectionViewDelegate,UICollectionViewDataSo
     }
     
 }
+
+
+
 
