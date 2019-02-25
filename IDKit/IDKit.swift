@@ -392,6 +392,35 @@ extension String {
         let e_index = tempself.index(startIndex, offsetBy: index + endIndex)
         return String(tempself[s_index ..< e_index])
     }
+    
+    /// Add thousands
+    var thousands:String {
+        guard self.count != 0  else {return self}
+        var tempself = self.replacingOccurrences(of: " ", with: "")
+        var decimalPart:String = ""
+        if tempself.contains(".") {
+            let separateArray = tempself.components(separatedBy: ".")
+            tempself = separateArray.first!
+            decimalPart = separateArray.last!
+        }
+        var tempArray = [String]()
+        let reversedArray:[Character] = tempself.reversed()
+        for i in 0 ..< reversedArray.count {
+            let temp = reversedArray[i]
+            tempArray.append("\(temp)")
+            if (i + 1)%3 == 0 , i != reversedArray.count - 1 {
+                tempArray.append(",")
+            }
+        }
+        tempArray = tempArray.reversed()
+        let result = tempArray.joined(separator: "")
+        return result + (decimalPart.count == 0 ? decimalPart: "." + decimalPart)
+    }
+    
+    /// A regular event
+    var isPhoneNumber:Bool {
+        return false
+    }
 
 }
 

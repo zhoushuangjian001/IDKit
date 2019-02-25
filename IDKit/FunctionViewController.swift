@@ -22,7 +22,7 @@ class FunctionViewController: UIViewController {
         self.getListData()
 
 
-        let s = "#AA66CC".sliceRange( -3,  6)
+        let s = "12.99".thousands
         print(s)
       
 
