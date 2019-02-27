@@ -531,7 +531,37 @@ extension String {
     func coverPrivacy(type:KindType = .bankCard) -> String {
         return self.coverPrivacy(coverBody: "*", type: type)
     }
+
+    /// Repeat string to initialize the class method
+    ///
+    /// - Parameters:
+    ///   - value: To duplicate objects
+    ///   - count: Repeat the number
+    static func initRepeat(value:String?, count:Int = 1)->String? {
+        guard value != nil , value!.count != 0  else {return value}
+        var tempStr = value
+        for _ in 0 ..< count {
+            tempStr! += value!
+        }
+        return tempStr
+    }
+
+    /// String repeat instance methods
+    ///
+    /// - Parameter count: Repeat the number
+    /// - Returns: The results of the string repetitions
+    func `repeat`(count:Int = 1)-> String? {
+        guard self.count != 0 else {return self}
+        var tempself = self
+        for _ in 0 ..< count {
+            tempself += self
+        }
+        return tempself
+    }
+
+
     
+
     /// A regular event
     var isPhoneNumber:Bool {
         

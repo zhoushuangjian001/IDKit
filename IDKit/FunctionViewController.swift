@@ -22,8 +22,11 @@ class FunctionViewController: UIViewController {
         self.getListData()
 
 
-        let s =  "huij56yu89io0poi".coverPrivacy()
+        let s =  String.initRepeat(value: "Xa",count: 5)
         print(s)
+
+        let ss = "Xa".repeat(count: 10)
+        print(ss)
       
 
     }
