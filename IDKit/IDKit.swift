@@ -10,6 +10,7 @@
 //  IDKit is a class that is applicable to all Swift project development functional requirements. This class provides only functional services, not some UI design. Hope developers choose carefully !!!
 
 import Foundation
+import CommonCrypto
 import UIKit
 
 // MARK: Software(App) information
@@ -417,8 +418,123 @@ extension String {
         return result + (decimalPart.count == 0 ? decimalPart: "." + decimalPart)
     }
     
+    /// String encryption
+    /// MD5
+    enum EncryptionStringType {
+        case capital
+        case lowercase
+    }
+    
+    /// 32-bit md5 encryption
+    ///
+    /// - Parameter outputType: Encrypt string output type
+    /// - Returns: Encrypted string
+    func md5_32bit(outputType:EncryptionStringType = .capital) ->String {
+        guard self.count != 0 else { return self }
+        let cInput = self.cString(using: .utf8)
+        let result = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(CC_MD5_DIGEST_LENGTH))
+        CC_MD5(cInput, CC_LONG(strlen(cInput!)), result)
+        var md5String = ""
+        var opType = "%02X"
+        if outputType == .lowercase {
+            opType = "%02x"
+        }
+        for i in 0 ..< CC_MD5_DIGEST_LENGTH {
+            let tempStr = String.init(format: opType, result[Int(i)])
+            md5String += tempStr
+        }
+        return md5String
+    }
+    
+    
+    /// 16-bit md5 encryption
+    ///
+    /// - Parameter outputType: Encrypt string output type
+    /// - Returns: Encrypted string
+    func md5_16bit(outputType:EncryptionStringType = .capital) -> String {
+        guard self.count != 0 else {return self}
+        var md5String = self.md5_16bit(outputType: outputType)
+        md5String = self.sliceRange(8, 16)
+        return md5String
+    }
+    
+    /// Privacy cover
+    enum KindType {
+        case bankCard
+        case iphoneNumber
+        case idCard
+    }
+    
+    /// Private information hiding
+    ///
+    /// - Parameters:
+    ///   - coverBody: The cover body
+    ///   - type: Type to cover
+    /// - Returns: The result of covering
+    func coverPrivacy(coverBody:String = "*", type:KindType = .bankCard ) -> String {
+        guard self.count != 0 else {return self}
+        let tempself = self.replacingOccurrences(of: " ", with: "")
+        var resultStr = ""
+        var sIndex:String.Index?
+        var eIndex:String.Index?
+        var headPart = ""
+        var footPart = ""
+        if type == .bankCard {
+            guard tempself.count == 16 else {return self}
+            sIndex = tempself.index(startIndex, offsetBy: tempself.count - 4)
+            footPart = String(tempself[sIndex! ..< tempself.endIndex])
+            for i in 1 ... tempself.count - 4 {
+                var cBody = ""
+                if i % 4 == 0 {
+                    cBody = " "
+                }
+                resultStr += coverBody + cBody
+            }
+        }
+        
+        if type == .iphoneNumber {
+            guard tempself.count == 11 else {return self}
+            eIndex = tempself.index(startIndex, offsetBy: 2)
+            headPart = String(tempself[startIndex ..< eIndex!])
+            sIndex = tempself.index(startIndex, offsetBy: tempself.count - 3)
+            footPart = String(tempself[sIndex! ..< tempself.endIndex])
+            for i in 1 ... 6 {
+                var cBody = ""
+                if i == 1 || i == 5 {
+                    cBody = " "
+                }
+                resultStr += coverBody + cBody
+            }
+        }
+        
+        if type == .idCard {
+            guard tempself.count == 18 else {return self}
+            eIndex = tempself.index(startIndex, offsetBy: 3)
+            headPart = String(tempself[startIndex ..< eIndex!])
+            sIndex = tempself.index(startIndex, offsetBy: tempself.count - 3)
+            footPart = String(tempself[sIndex! ..< tempself.endIndex])
+            for i in 1 ... 12 {
+                var cBody = ""
+                if i == 3 || i == 7 || i == 11 {
+                    cBody = " "
+                }
+                resultStr += coverBody + cBody
+            }
+        }
+        return headPart + resultStr + footPart
+    }
+    
+    /// Specifies the kind of private information masking that is the default masking
+    ///
+    /// - Parameter type: Cover type
+    /// - Returns: The result of covering
+    func coverPrivacy(type:KindType = .bankCard) -> String {
+        return self.coverPrivacy(coverBody: "*", type: type)
+    }
+    
     /// A regular event
     var isPhoneNumber:Bool {
+        
         return false
     }
 

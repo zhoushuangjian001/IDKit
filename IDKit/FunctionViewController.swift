@@ -22,7 +22,7 @@ class FunctionViewController: UIViewController {
         self.getListData()
 
 
-        let s = "12.99".thousands
+        let s =  "huij56yu89io0poi".coverPrivacy()
         print(s)
       
 
